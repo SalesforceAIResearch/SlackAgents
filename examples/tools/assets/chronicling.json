@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Chronicling America Title Search API",
+      "description": "API for searching titles in the Chronicling America newspaper archive.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://chroniclingamerica.loc.gov"
+      }
+    ],
+    "paths": {
+      "/search/titles/results/": {
+        "get": {
+          "summary": "Search newspaper titles",
+          "description": "Retrieve newspaper titles that match specified search terms.",
+          "parameters": [
+            {
+              "name": "terms",
+              "in": "query",
+              "description": "The search term or phrase for querying newspaper titles.",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "oakland"
+              }
+            },
+            {
+              "name": "format",
+              "in": "query",
+              "description": "The format of the response.",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": ["json", "xml"],
+                "example": "json"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Page number for paginated results.",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": 5
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of newspaper titles that match the search query.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "totalItems": {
+                        "type": "integer",
+                        "description": "Total number of items found.",
+                        "example": 100
+                      },
+                      "startIndex": {
+                        "type": "integer",
+                        "description": "The index at which the current page of results starts.",
+                        "example": 40
+                      },
+                      "itemsPerPage": {
+                        "type": "integer",
+                        "description": "The number of items returned per page.",
+                        "example": 20
+                      },
+                      "items": {
+                        "type": "array",
+                        "description": "List of newspaper titles.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string",
+                              "description": "Title of the newspaper.",
+                              "example": "The Oakland Tribune"
+                            },
+                            "id": {
+                              "type": "string",
+                              "description": "Identifier for the newspaper.",
+                              "example": "sn85042462"
+                            },
+                            "place_of_publication": {
+                              "type": "string",
+                              "description": "Location where the newspaper is published.",
+                              "example": "Oakland, Calif."
+                            },
+                            "start_year": {
+                              "type": "integer",
+                              "description": "The year the newspaper started publication.",
+                              "example": 1874
+                            },
+                            "end_year": {
+                              "type": "integer",
+                              "description": "The year the newspaper ended publication or null if still ongoing.",
+                              "example": 2016
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request due to invalid parameter values."
+            },
+            "500": {
+              "description": "Internal server error."
+            }
+          }
+        }
+      }
+    }
+  }

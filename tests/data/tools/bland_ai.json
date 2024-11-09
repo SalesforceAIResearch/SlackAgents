@@ -1,0 +1,230 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Bland.ai API",
+      "version": "v1",
+      "description": "API for managing calls through Bland.ai."
+    },
+    "servers": [
+      {
+        "url": "https://api.bland.ai/v1"
+      }
+    ],
+    "paths": {
+      "/calls": {
+        "post": {
+          "summary": "Create a call",
+          "operationId": "createCall",
+          "tags": ["Calls"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone_number": {
+                      "type": "string",
+                      "description": "Phone number to initiate the call."
+                    },
+                    "task": {
+                      "type": "string",
+                      "description": "Task to be performed during the call."
+                    },
+                    "pathway_id": {
+                      "type": "string",
+                      "description": "ID of the pathway to follow in the call."
+                    },
+                    "start_node_id": {
+                      "type": "string",
+                      "description": "ID of the starting node in the pathway."
+                    },
+                    "voice": {
+                      "type": "string",
+                      "description": "Voice to be used in the call."
+                    },
+                    "background_track": {
+                      "type": "string",
+                      "description": "Background track for the call."
+                    },
+                    "first_sentence": {
+                      "type": "string",
+                      "description": "The first sentence spoken during the call."
+                    },
+                    "wait_for_greeting": {
+                      "type": "boolean",
+                      "description": "Whether to wait for a greeting before starting."
+                    },
+                    "block_interruptions": {
+                      "type": "boolean",
+                      "description": "Whether to block interruptions during the call."
+                    },
+                    "interruption_threshold": {
+                      "type": "integer",
+                      "description": "Threshold for interruptions."
+                    },
+                    "model": {
+                      "type": "string",
+                      "description": "Model used for speech generation."
+                    },
+                    "temperature": {
+                      "type": "number",
+                      "description": "Temperature for controlling response randomness."
+                    },
+                    "keywords": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of keywords to look for during the call."
+                    },
+                    "pronunciation_guide": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Guide for correct pronunciation of words."
+                    },
+                    "transfer_phone_number": {
+                      "type": "string",
+                      "description": "Phone number to transfer the call."
+                    },
+                    "transfer_list": {
+                      "type": "object",
+                      "description": "List of transfer options."
+                    },
+                    "language": {
+                      "type": "string",
+                      "description": "Language to be used in the call."
+                    },
+                    "timezone": {
+                      "type": "string",
+                      "description": "Timezone for scheduling the call."
+                    },
+                    "request_data": {
+                      "type": "object",
+                      "description": "Additional request data."
+                    },
+                    "tools": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "description": "Tools to be used during the call."
+                    },
+                    "dynamic_data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dynamic_data[i].response_data": {
+                            "type": "array",
+                            "items": {
+                              "type": "object"
+                            }
+                          }
+                        }
+                      },
+                      "description": "Dynamic data to be used during the call."
+                    },
+                    "start_time": {
+                      "type": "string",
+                      "description": "Scheduled start time for the call."
+                    },
+                    "voicemail_message": {
+                      "type": "string",
+                      "description": "Message to be left if the call reaches voicemail."
+                    },
+                    "voicemail_action": {
+                      "type": "object",
+                      "description": "Actions to be taken if voicemail is reached."
+                    },
+                    "retry": {
+                      "type": "object",
+                      "description": "Retry options for the call."
+                    },
+                    "max_duration": {
+                      "type": "integer",
+                      "description": "Maximum duration of the call in seconds."
+                    },
+                    "record": {
+                      "type": "boolean",
+                      "description": "Whether to record the call."
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Phone number from which the call is made."
+                    },
+                    "webhook": {
+                      "type": "string",
+                      "description": "Webhook URL to send call events."
+                    },
+                    "webhook_events": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of events to trigger the webhook."
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "Metadata associated with the call."
+                    },
+                    "summary_prompt": {
+                      "type": "string",
+                      "description": "Prompt for call summary."
+                    },
+                    "analysis_prompt": {
+                      "type": "string",
+                      "description": "Prompt for call analysis."
+                    },
+                    "analysis_schema": {
+                      "type": "object",
+                      "description": "Schema for analyzing the call."
+                    },
+                    "answered_by_enabled": {
+                      "type": "boolean",
+                      "description": "Whether to enable 'answered by' feature."
+                    }
+                  },
+                  "required": ["phone_number", "task", "pathway_id", "start_node_id"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Call successfully created.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "call_id": {
+                        "type": "string",
+                        "description": "ID of the created call."
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "Status of the created call."
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid request parameters."
+            },
+            "401": {
+              "description": "Unauthorized request."
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {}
+    }
+  }
+  

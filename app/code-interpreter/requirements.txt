@@ -1,0 +1,3 @@
+slackagents==0.0.1
+serpapi
+python-dotenv

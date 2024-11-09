@@ -1,0 +1,214 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Bland AI API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.bland.ai/v1"
+        }
+    ],
+    "paths": {
+        "/calls": {
+            "post": {
+                "summary": "Create a new call",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "phone_number": {
+                                        "type": "string"
+                                    },
+                                    "task": {
+                                        "type": "string"
+                                    },
+                                    "pathway_id": {
+                                        "type": "string"
+                                    },
+                                    "start_node_id": {
+                                        "type": "string"
+                                    },
+                                    "voice": {
+                                        "type": "string"
+                                    },
+                                    "background_track": {
+                                        "type": "string"
+                                    },
+                                    "first_sentence": {
+                                        "type": "string"
+                                    },
+                                    "wait_for_greeting": {
+                                        "type": "boolean"
+                                    },
+                                    "block_interruptions": {
+                                        "type": "boolean"
+                                    },
+                                    "interruption_threshold": {
+                                        "type": "integer"
+                                    },
+                                    "model": {
+                                        "type": "string"
+                                    },
+                                    "temperature": {
+                                        "type": "integer"
+                                    },
+                                    "keywords": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "pronunciation_guide": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "transfer_phone_number": {
+                                        "type": "string"
+                                    },
+                                    "transfer_list": {
+                                        "type": "object"
+                                    },
+                                    "language": {
+                                        "type": "string"
+                                    },
+                                    "timezone": {
+                                        "type": "string"
+                                    },
+                                    "request_data": {
+                                        "type": "object"
+                                    },
+                                    "tools": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "dynamic_data": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "dynamic_data[i].response_data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "start_time": {
+                                        "type": "string"
+                                    },
+                                    "voicemail_message": {
+                                        "type": "string"
+                                    },
+                                    "voicemail_action": {
+                                        "type": "object"
+                                    },
+                                    "retry": {
+                                        "type": "object"
+                                    },
+                                    "max_duration": {
+                                        "type": "integer"
+                                    },
+                                    "record": {
+                                        "type": "boolean"
+                                    },
+                                    "from": {
+                                        "type": "string"
+                                    },
+                                    "webhook": {
+                                        "type": "string"
+                                    },
+                                    "webhook_events": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "metadata": {
+                                        "type": "object"
+                                    },
+                                    "summary_prompt": {
+                                        "type": "string"
+                                    },
+                                    "analysis_prompt": {
+                                        "type": "string"
+                                    },
+                                    "analysis_schema": {
+                                        "type": "object"
+                                    },
+                                    "answered_by_enabled": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "required": [
+                                    "phone_number",
+                                    "task",
+                                    "pathway_id",
+                                    "start_node_id",
+                                    "voice",
+                                    "background_track",
+                                    "first_sentence",
+                                    "wait_for_greeting",
+                                    "block_interruptions",
+                                    "interruption_threshold",
+                                    "model",
+                                    "temperature",
+                                    "keywords",
+                                    "pronunciation_guide",
+                                    "transfer_phone_number",
+                                    "transfer_list",
+                                    "language",
+                                    "timezone",
+                                    "request_data",
+                                    "tools",
+                                    "dynamic_data",
+                                    "start_time",
+                                    "voicemail_message",
+                                    "voicemail_action",
+                                    "retry",
+                                    "max_duration",
+                                    "record",
+                                    "from",
+                                    "webhook",
+                                    "webhook_events",
+                                    "metadata",
+                                    "summary_prompt",
+                                    "analysis_prompt",
+                                    "analysis_schema",
+                                    "answered_by_enabled"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Call created successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

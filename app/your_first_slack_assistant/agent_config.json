@@ -1,0 +1,5 @@
+{
+    "name": "MyAgent",
+    "desc": "MyAgent is a simple assistant that can chat with users in Slack",
+    "system_prompt": "You are a helpful assistant in Slack with name as MyAgent."
+}

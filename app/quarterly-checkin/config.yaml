@@ -1,0 +1,67 @@
+
+slackConfig:
+  id: 
+  SLACK_BOT_TOKEN: 
+  SLACK_APP_TOKEN: 
+
+agentConfig: 
+  name: Quarterly Check-in Workflow
+  desc: Workflow designed to automate the employee quarterly check-in process
+  type: SlackWorkflow
+  graph:
+    nodes:
+      data_agent:
+        name: Data Agent
+        desc: Step to load an employee's Jira record and generate a report
+        system_prompt_file: prompts/data_agent.md
+        llm:
+          model: gpt-4o
+          temperature: 0.2
+        tools:
+          - name: load_jira_record_tool
+            type: function
+            module: tools
+          - name: write_tool
+            type: function
+            module: tools
+        tool_choice: auto
+
+      calendar_agent:
+        name: Calendar Agent
+        desc: Step to load calendars and send calendar invites
+        system_prompt_file: prompts/calendar_agent.md
+        llm:
+          model: gpt-4o-mini
+        tools:
+          - name: load_employee_calendar_tool
+            type: function
+            module: tools
+          - name: send_calendar_invite_tool
+            type: function
+            module: tools
+        tool_choice: auto
+
+      email_agent:
+        name: Email Agent
+        desc: Step designed to send emails to employees
+        llm:
+          model: gpt-4o-mini
+        system_prompt_file: prompts/email_agent.md
+        tools:
+          - name: send_email_tool
+            type: function
+            module: tools
+        tool_choice: auto
+
+    transitions:
+      - source: Data Agent
+        target: Calendar Agent
+        description: "Transition after report is written"
+
+      - source: Calendar Agent
+        target: Email Agent
+        description: Transition after calendar invites are sent
+        
+    initial_module: Data Agent
+  max_steps: 10
+  verbose: true

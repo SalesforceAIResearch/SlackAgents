@@ -1,0 +1,41 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "slackagents"
+version = "0.0.2"
+description = "scalable management and collaboration for massive Slack AI agents"
+authors = ["Weiran Yao <weirayao@gmail.com>", "Zhiwei Liu <jim96liu@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "slackagents", from = "src" }]
+
+
+[tool.poetry.urls]
+Homepage = "https://github.com/SalesforceAIResearch/SlackAgents"
+Documentation = "https://docs.slackagents.com"
+Repository = "https://github.com/SalesforceAIResearch/SlackAgents"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<=3.13"
+poetry = "^1.8.3"
+docstring-parser = "^0.16"
+python-dotenv = "^1.0.1"
+litellm = "^1.48.19"
+networkx = "^3.3"
+matplotlib = "^3.9.2"
+slack-sdk = "^3.33.1"
+slack-bolt = "^1.21.0"
+termcolor = "^2.5.0"
+tabulate = "^0.9.0"
+
+[tool.poetry.scripts]
+slackagents = "slackagents.__main__:cli"
+
+[tool.poetry.group.lint.dependencies]
+
+[tool.poetry.group.dev.dependencies]
+ipdb = "^0.13.13"
+
+[tool.poetry.group.test.dependencies]
+

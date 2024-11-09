@@ -1,0 +1,6 @@
+youtube-search-python
+yt-dlp
+librosa
+soundfile
+numpy==2.0.2
+openai-whisper

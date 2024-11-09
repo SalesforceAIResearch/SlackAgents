@@ -1,0 +1,26 @@
+slackConfig:
+  id: 
+  SLACK_BOT_TOKEN: 
+  SLACK_APP_TOKEN: 
+agentConfig:
+  name: Code Interpreter
+  desc: Code Interpreter is an agent that uses code generation to solve tasks
+  type: SlackAssistant
+  system_prompt_file: prompts/code_interpreter_agent.md
+  llm: 
+      model: gpt-4o
+      temperature: 0.2
+  colleagues:
+    U06V9R7FCLB:
+      name: Weiran Yao
+      description: CEO of Cranberry.ai
+  tools:
+    - name: code_interpreter
+      type: function
+      module: tools
+    - name: google_search
+      type: function
+      module: tools
+  tool_choice: auto
+  max_steps: 10
+  verbose: true
