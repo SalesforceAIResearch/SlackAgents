@@ -1,5 +1,8 @@
+import os
+
+# Load from environment to avoid committing secrets. Set SLACK_BOT_TOKEN, SLACK_APP_TOKEN, and optionally id (app id).
 BOLT_CONFIG = {
-    "id": "A07UNE947T6", 
-    "SLACK_BOT_TOKEN": "xoxb-7008638092481-7965358529846-94RJDLwXnqeA5vXE0ps2PJuc",
-    "SLACK_APP_TOKEN": "xapp-1-A07UNE947T6-7965357699750-319fb663b719af624ea93f6541d2857a05c735a05c9de32dd6a43977ff96d030"
+    "id": os.getenv("SLACK_APP_ID", ""),
+    "SLACK_BOT_TOKEN": os.getenv("SLACK_BOT_TOKEN", ""),
+    "SLACK_APP_TOKEN": os.getenv("SLACK_APP_TOKEN", ""),
 }

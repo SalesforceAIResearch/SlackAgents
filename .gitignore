@@ -122,6 +122,9 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
+# Slack app config (may contain tokens; use .example.slack_bolt_id.json as template)
+slack_bolt_id.json
+
 # Environments
 .env
 .venv

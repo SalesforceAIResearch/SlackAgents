@@ -100,15 +100,14 @@ class OrchestrateState(SlackRespondState):
         return True
 
 if __name__ == "__main__":
+    import os
     import pickle
     with open("session.pkl", "rb") as f:
         session = pickle.load(f)
     from roles.representative import CustomerServiceRepresentative
 
-    SLACK_BOT_TOKEN = (
-        "xoxb-7008638092481-7004461938482-zggkClX00gQH8qTRvLlBRJEv"
-    )
-    SLACK_APP_TOKEN = "xapp-1-A06VBQ8D93Q-7054624596768-b08f001d9ce2de1a2336efc18693f87103a6e3883ab76d57f2c20ee39b357241"
+    SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN", "")
+    SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN", "")
     config = {
         "PROCESS_URL": "http://localhost:30003/chat",
         "SLACK_BOT_TOKEN": SLACK_BOT_TOKEN,
